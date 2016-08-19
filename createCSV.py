@@ -63,11 +63,12 @@ olympicSpending = pd.concat([oxfordOlympicSpending, olympicSpending], axis=1, jo
 
 #rename columns
 olympicSpending.rename(columns={'NY.GDP.MKTP.CD':'GDP','MS.MIL.XPND.GD.ZS':'Military', 'SE.XPD.TOTL.GD.ZS':'Education'}, inplace=True)
+#Convert percentages to value in GDP$. Some precision is lost here as dataframe contains floats 
 olympicSpending['Military'] = ((olympicSpending['GDP']/100)* olympicSpending['Military'])
 olympicSpending['Education'] = ((olympicSpending['GDP']/100)* olympicSpending['Education'])
 
 
 #save to CSV format
-print olympicSpending
-
 olympicSpending.to_csv('olympicSpending.csv')
+
+print olympicSpending
